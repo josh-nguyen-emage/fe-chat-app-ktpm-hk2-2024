@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>HomeScreen.qml</file>
-        <file>ChartViewModel/ChatComponent.qml</file>
-        <file>Resource/mouthan.png</file>
-    </qresource>
-</RCC>
