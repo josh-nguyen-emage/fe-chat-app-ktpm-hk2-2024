@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
+import "../CustomComponent"
+
 Rectangle {
     width: 462
     height: 100
@@ -12,23 +14,11 @@ Rectangle {
             width: parent.width*0.6
             height: parent.height*0.6
             anchors.centerIn: parent
-            radius: width
-            clip: true
-            Image {
+            color: "transparent"
+            CircleImage {
                 id: mouthan
                 anchors.fill: parent
                 source: "../Resource/mouthan.png"
-                fillMode: Image.PreserveAspectFit
-                layer.enabled: true
-               // layer.effect: OpacityMask {
-               //     maskSource: mask
-               // }
-            }
-            Rectangle {
-                id: mask
-                anchors.fill: parent
-                radius: width/2
-                visible: false
             }
         }
     }

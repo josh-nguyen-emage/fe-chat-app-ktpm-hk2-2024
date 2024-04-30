@@ -15,4 +15,8 @@ RESOURCES Resource/birthDate.png Resource/chat_header.png Resource/genderIcon.pn
 QML_FILES Test.qml
 RESOURCES Resource/birthDate.png Resource/chat_header.png Resource/genderIcon.png Resource/main_header.png Resource/mediaButton.jpg Resource/messageButton.png Resource/mouthan.png Resource/persionalInfor_header.png Resource/zaloNameIcon.png
 QML_FILES ChartView/ChatComponent.qml ChartView/ChatListView.qml ChartView/ConversationView.qml PersionalInforView/InformationComponent.qml PersionalInforView/PersionalInforView.qml
+RESOURCES Resource/birthDate.png Resource/chat_header.png Resource/genderIcon.png Resource/main_header.png Resource/mediaButton.jpg Resource/messageButton.png Resource/mouthan.png Resource/persionalInfor_header.png Resource/zaloNameIcon.png
+RESOURCES Resource/imageIcon.png
+QML_FILES CustomComponent/PersionalInforView.qml
+QML_FILES CustomComponent/CircleImage.qml
 )

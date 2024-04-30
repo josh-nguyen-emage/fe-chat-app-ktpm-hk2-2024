@@ -83,7 +83,7 @@ Item {
                             height: 30
                             Image{
                                 anchors.fill: parent
-                                source: "Resource/mouthan.png"
+                                source: "../Resource/mouthan.png"
                                 fillMode: Image.PreserveAspectFit
                             }
                         }
@@ -136,7 +136,7 @@ Item {
                 height: parent.height
                 anchors.right: parent.right
                 Image {
-                    source: "Resource/mouthan.png"
+                    source: "../Resource/imageIcon"
                     width: parent.width
                     height: parent.height
                 }
