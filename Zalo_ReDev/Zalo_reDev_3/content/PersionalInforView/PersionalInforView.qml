@@ -35,6 +35,15 @@ Item {
                 font.bold: true
                 font.pixelSize: 20
             }
+
+            MouseArea{
+                width: parent.width*0.08
+                height: parent.height*0.5
+                anchors.bottom: parent.bottom
+                onClicked: {
+                    rootWindow.setChatList()
+                }
+            }
         }
 
         Rectangle{
@@ -78,84 +87,6 @@ Item {
                     iconSource: "../Resource/genderIcon.png"
                     label: "Giới tính"
                     value: "Nam"
-                }
-
-                Rectangle{
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 60
-                    IconImage{
-                        height: parent.height * 0.6
-                        width: height
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: 10
-                        source: "../Resource/zaloNameIcon.png"
-                        color: "#727272"
-                    }
-
-                    Text{
-                        text: "Tên Zalo"
-                        font.pixelSize: 20
-                        color: "#707070"
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: 70
-                    }
-
-                    Text{
-                        text: "Tên Zalo"
-                        font.pixelSize: 20
-                        color: "#4a4a4a"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        rightPadding: 15
-                    }
-
-                    Rectangle{
-                        x: 70
-                        width: parent.width - x
-                        height: 2
-                        anchors.bottom: parent.bottom
-                        color: "#e7e7e7"
-                    }
-
-                }
-
-                Rectangle{
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 60
-                    IconImage{
-                        height: parent.height * 0.6
-                        width: height
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: 10
-                        source: "../Resource/zaloNameIcon.png"
-                        color: "#727272"
-                    }
-
-                    Text{
-                        text: "Tên Zalo"
-                        font.pixelSize: 20
-                        color: "#707070"
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: 70
-                    }
-
-                    Text{
-                        text: "Tên Zalo"
-                        font.pixelSize: 20
-                        color: "#4a4a4a"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        rightPadding: 15
-                    }
-
-                    Rectangle{
-                        x: 70
-                        width: parent.width - x
-                        height: 2
-                        anchors.bottom: parent.bottom
-                        color: "#e7e7e7"
-                    }
-
                 }
 
                 Rectangle{

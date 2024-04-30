@@ -24,21 +24,21 @@ Window {
     Component{
         id: chatListView
         ChatListView{
-            anchors.fill: parent
+            // anchors.fill: parent
         }
     }
 
     Component{
         id: conversationView
         ConversationView{
-            anchors.fill: parent
+            // anchors.fill: parent
         }
     }
 
     Component{
         id: persionalInforView
         PersionalInforView{
-            anchors.fill: parent
+            // anchors.fill: parent
         }
     }
 
@@ -48,6 +48,10 @@ Window {
 
     function setConversationView() {
         stack.push(conversationView)
+    }
+
+    function setPersionalInforView(){
+        stack.push(persionalInforView)
     }
 
 

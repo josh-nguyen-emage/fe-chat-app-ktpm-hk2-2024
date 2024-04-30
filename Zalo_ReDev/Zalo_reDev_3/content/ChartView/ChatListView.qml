@@ -119,6 +119,7 @@ Rectangle {
                         anchors.fill: parent
                         onClicked: {
                             console.log("persional tab")
+                            rootWindow.setPersionalInforView()
                         }
                     }
                 }

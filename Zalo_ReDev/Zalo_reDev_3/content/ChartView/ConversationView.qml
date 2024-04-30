@@ -43,6 +43,15 @@ Item {
                 color: "white"
                 font.pixelSize: 15
             }
+
+            MouseArea{
+                width: parent.width*0.08
+                height: parent.height*0.5
+                anchors.bottom: parent.bottom
+                onClicked: {
+                    rootWindow.setChatList()
+                }
+            }
         }
 
         Rectangle{
@@ -53,6 +62,7 @@ Item {
                 id: listView
                 anchors.fill: parent
                 model: ListModel {
+                    id: listModel
                     ListElement { send: true; content: "obviously neither of those. It also has an aspect ratio of about";
                         value3: "Description of Item 1" }
                     ListElement { send: false; content: "obviously neither of those. It also has an aspect ratio of about";
@@ -77,10 +87,12 @@ Item {
                         width: 40
                         height: 40
                         visible: model.send
+                        color: "transparent"
                         Rectangle {
                             anchors.centerIn: parent
-                            width: 30
-                            height: 30
+                            width: 35
+                            height: 35
+                            color: "transparent"
                             Image{
                                 anchors.fill: parent
                                 source: "../Resource/mouthan.png"
@@ -129,6 +141,10 @@ Item {
                 // Define behavior when text is entered
                 onTextChanged: {
                     console.log("Text entered:", textInput.text)
+                }
+                onAccepted: {
+                    listModel.append({send:false,content:text})
+                    text = ""
                 }
             }
             Rectangle{

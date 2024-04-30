@@ -18,7 +18,7 @@ Rectangle{
     }
 
     Text{
-        text: currentRoot.Label
+        text: currentRoot.label
         font.pixelSize: 20
         color: "#707070"
         anchors.verticalCenter: parent.verticalCenter
@@ -26,7 +26,7 @@ Rectangle{
     }
 
     Text{
-        text: currentRoot.Value
+        text: currentRoot.value
         font.pixelSize: 20
         color: "#4a4a4a"
         anchors.verticalCenter: parent.verticalCenter
