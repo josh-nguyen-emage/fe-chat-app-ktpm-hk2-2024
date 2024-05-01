@@ -1,13 +1,17 @@
 #include "PythonController.h"
+#include "qdebug.h"
 #include <QTextStream>
 
 PythonController::PythonController(QObject *parent) : QObject(parent), m_pythonProcess(nullptr) {}
 
-QStringList PythonController::runPythonScript(const QString& pythonPath, const QStringList& arguments) {
+QStringList PythonController::runPythonScript(const QString& pythonPath, QStringList& arguments) {
     QStringList output;
+    arguments.prepend(pythonPath);
     m_pythonProcess = new QProcess();
-    m_pythonProcess->setProgram(pythonPath);
+    m_pythonProcess->setProgram("python");
     m_pythonProcess->setArguments(arguments);
+    m_pythonProcess->setProcessChannelMode(QProcess::MergedChannels);
+
 
     // Start the Python process
     m_pythonProcess->start();
@@ -17,14 +21,9 @@ QStringList PythonController::runPythonScript(const QString& pythonPath, const Q
         return output;
     }
 
-    // Read output from the Python process
-    QTextStream textStream(m_pythonProcess);
-    while (!textStream.atEnd()) {
-        output.append(textStream.readLine());
-    }
-
     // Wait for the process to finish
     m_pythonProcess->waitForFinished();
+    output.append(m_pythonProcess->readAll());
 
     delete m_pythonProcess;
     m_pythonProcess = nullptr;
@@ -32,7 +31,7 @@ QStringList PythonController::runPythonScript(const QString& pythonPath, const Q
     return output;
 }
 
-void PythonController::streamPythonScript(const QString& pythonPath, const QStringList& arguments) {
+void PythonController::streamPythonScript(const QString& pythonPath, QStringList& arguments) {
     m_pythonProcess = new QProcess();
     m_pythonProcess->setProgram(pythonPath);
     m_pythonProcess->setArguments(arguments);

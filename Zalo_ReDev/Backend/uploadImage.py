@@ -1,8 +1,16 @@
 import requests
+import sys
 
-url = 'http://localhost:8080/chatapp/api/media/upload'
-files = {'media_file': open("C:/Users/Admin/Desktop/image/out.png", 'rb')}
+def upload_image(image_path):
+    url = 'http://localhost:8080/chatapp/api/media/upload'
+    files = {'media_file': open(image_path, 'rb')}
+    response = requests.post(url, files=files)
+    
+    print(response.text)
 
-response = requests.post(url, files=files)
+def main():
+    image_path = sys.argv[1]
+    upload_image(image_path)
 
-print(response.text)
+if __name__ == "__main__":
+    main()

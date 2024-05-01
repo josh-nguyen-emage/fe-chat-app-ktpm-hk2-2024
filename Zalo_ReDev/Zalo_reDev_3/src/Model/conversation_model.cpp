@@ -1,4 +1,7 @@
 #include "conversation_model.h"
+#include "src/AppDefine/define.h"
+
+#include <src/Controller/PythonController.h>
 
 
 Conversation_Model::Conversation_Model(QObject *parent) : QObject(parent)
@@ -40,55 +43,38 @@ void Conversation_Model::sendMessage(QString text)
 
 void Conversation_Model::uploadImage(QString imagePath)
 {
-    qDebug() << "start uploadImage";
-    // Initialize the network manager
-    QNetworkAccessManager manager;
+    PythonController pythonController;
+    QStringList inputArgument;
+    inputArgument.append(imagePath);
+    QStringList returnJson = pythonController.runPythonScript(Define::getInstance().backendPath+"\\uploadImage.py",inputArgument);
 
-    // Create a QHttpMultiPart to hold the form data
-    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(returnJson[0].toUtf8());
 
-    QString fileName = QFileInfo(imagePath).fileName();
-
-    // Add the file
-    QHttpPart filePart;
-    filePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; Key=\"media_file\"; Value=\"" + fileName + "\""));
-
-
-    QFile *file = new QFile(imagePath);
-    if (!file->open(QIODevice::ReadOnly))
-    {
-        qDebug() << "Could not open file for reading";
-        return;
+    if (!jsonDocument.isObject()) {
+        qDebug() << "WTF bro ??? why "<<inputArgument[0]<<" return " << returnJson;
     }
-    filePart.setBodyDevice(file);
-    multiPart->append(filePart);
+    QJsonObject jsonObject = jsonDocument.object();
+    QJsonValue idValue = jsonObject.value("id");
 
-    // Construct the URL
-    QUrl url("http://localhost:8080/chatapp/api/media/upload");
-    QNetworkRequest request(url);
+    qDebug() << "Image ID: " << idValue.toInt();
+}
 
-    // Send the request
-    QNetworkReply *reply = manager.post(request, multiPart);
+void Conversation_Model::downloadImage(int imageID)
+{
+    PythonController pythonController;
+    QStringList inputArgument;
+    inputArgument.append(QString::number(imageID));
+    QStringList returnJson = pythonController.runPythonScript(Define::getInstance().backendPath+"\\downloadImage.py",inputArgument);
 
-    qDebug() << "Send Done";
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(returnJson[0].toUtf8());
 
-    // Connect signals for handling the reply
-    QObject::connect(reply, &QNetworkReply::finished, [&]() {
-        if (reply->error() == QNetworkReply::NoError)
-        {
-            qDebug() << "Upload successful";
-            qDebug() << "Response:" << reply->readAll();
-        }
-        else
-        {
-            qDebug() << "Error:" << reply->errorString();
-        }
-        // Clean up
-        multiPart->deleteLater(); // delete the multiPart
-        file->deleteLater();      // delete the file
-        reply->deleteLater();     // delete the reply
-    });
-    qDebug() << "Function Done";
+    if (!jsonDocument.isObject()) {
+        qDebug() << "WTF bro ??? why "<<inputArgument[0]<<" return " << returnJson;
+    }
+    QJsonObject jsonObject = jsonDocument.object();
+    QJsonValue idValue = jsonObject.value("id");
+
+    qDebug() << "Image ID: " << idValue.toInt();
 }
 
 void Conversation_Model::onMessageReceived(const QString& message)

@@ -12,10 +12,10 @@ class PythonController : public QObject {
 public:
     explicit PythonController(QObject *parent = nullptr);
 
-    QStringList runPythonScript(const QString& pythonPath, const QStringList& arguments);
+    QStringList runPythonScript(const QString& pythonPath,  QStringList& arguments);
 
 public slots:
-    void streamPythonScript(const QString& pythonPath, const QStringList& arguments);
+    void streamPythonScript(const QString& pythonPath, QStringList& arguments);
 
 signals:
     void pythonOutput(const QString& output);

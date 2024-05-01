@@ -13,6 +13,10 @@
 #include <QFile>
 #include <QUrl>
 #include <QFileInfo>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QString>
 
 class Conversation_Model : public QObject
 {
@@ -23,6 +27,7 @@ public:
 public slots:
     void sendMessage(QString text);
     void uploadImage(QString imagePath);
+    void downloadImage(int imageID);
     void onMessageReceived(const QString& message);
 
 private:
