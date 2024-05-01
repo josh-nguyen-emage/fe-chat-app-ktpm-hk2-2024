@@ -146,7 +146,7 @@ Item {
                 }
                 onAccepted: {
                     listModel.append({send:false,content:text})
-                    conversation_Model.sendMessage(text)
+                    conversationVM.sendMessage(text)
 
                     text = ""
                 }
@@ -179,8 +179,7 @@ Item {
                         console.log("You chose: " + fileDialog.currentFile)
                         var imagePath = fileDialog.currentFile.toString().substring(8); // Removing "file:///" prefix
 
-                        // Call conversation_Model.uploadImage() with the selected image path
-                        conversation_Model.uploadImage(imagePath);
+                        conversationVM.uploadImage(imagePath);
                     }
                 }
             }

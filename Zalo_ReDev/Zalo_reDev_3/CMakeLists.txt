@@ -15,10 +15,11 @@ endif()
 
 qt_add_executable(Zalo_reDev_3App src/main.cpp
     src/test_only.h src/test_only.cpp
-    src/Model/chatlist_model.cpp src/Model/chatlist_model.h src/Model/conversation_model.cpp src/Model/conversation_model.h src/Model/main_model.cpp src/Model/main_model.h src/Model/persionalinfor_model.cpp src/Model/persionalinfor_model.h src/ViewModel/ChatView/chatlistvm.cpp src/ViewModel/ChatView/chatlistvm.h src/ViewModel/ChatView/conversationvm.cpp src/ViewModel/ChatView/conversationvm.h src/ViewModel/PersionalInforView/persionalinforvm.cpp src/ViewModel/PersionalInforView/persionalinforvm.h
+    src/Model/chatlist_model.cpp src/Model/chatlist_model.h src/Model/conversation_model.cpp src/Model/conversation_model.h   src/Model/persionalinfor_model.cpp src/Model/persionalinfor_model.h src/ViewModel/ChatView/chatlistvm.cpp src/ViewModel/ChatView/chatlistvm.h src/ViewModel/ChatView/conversationvm.cpp src/ViewModel/ChatView/conversationvm.h src/ViewModel/PersionalInforView/persionalinforvm.cpp src/ViewModel/PersionalInforView/persionalinforvm.h
     src/AppDefine/define.h src/AppDefine/define.cpp
 
     src/Controller/pythoncontroller.h src/Controller/pythoncontroller.cpp
+    src/ViewModel/mainvm.h src/ViewModel/mainvm.cpp
 )
 
 qt_add_resources(Zalo_reDev_3App "configuration"

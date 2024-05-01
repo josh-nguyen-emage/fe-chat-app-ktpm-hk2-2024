@@ -7,7 +7,7 @@
 #include "app_environment.h"
 #include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
-#include "src/Model/main_model.h"
+#include "src/ViewModel/mainvm.h"
 #include "src/test_only.h"
 
 int main(int argc, char *argv[])
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     Test_Only testOnly;
     engine.rootContext()->setContextProperty("testOnly", &testOnly);
 
-    Main_Model mainModel(&engine);
+    MainVM mainVM(&engine);
 
     engine.load(url);
 
