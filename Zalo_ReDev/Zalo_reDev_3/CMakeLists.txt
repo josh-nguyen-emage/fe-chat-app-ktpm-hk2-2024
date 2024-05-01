@@ -7,14 +7,19 @@ project(Zalo_reDev_3App LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick WebSockets)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
 endif()
 
 qt_add_executable(Zalo_reDev_3App src/main.cpp
-    src/test_only.h src/test_only.cpp)
+    src/test_only.h src/test_only.cpp
+    src/Model/chatlist_model.cpp src/Model/chatlist_model.h src/Model/conversation_model.cpp src/Model/conversation_model.h src/Model/main_model.cpp src/Model/main_model.h src/Model/persionalinfor_model.cpp src/Model/persionalinfor_model.h src/ViewModel/ChatView/chatlistvm.cpp src/ViewModel/ChatView/chatlistvm.h src/ViewModel/ChatView/conversationvm.cpp src/ViewModel/ChatView/conversationvm.h src/ViewModel/PersionalInforView/persionalinforvm.cpp src/ViewModel/PersionalInforView/persionalinforvm.h
+    src/AppDefine/define.h src/AppDefine/define.cpp
+
+    src/Controller/pythoncontroller.h src/Controller/pythoncontroller.cpp
+)
 
 qt_add_resources(Zalo_reDev_3App "configuration"
     PREFIX "/"
@@ -27,6 +32,7 @@ target_link_libraries(Zalo_reDev_3App PRIVATE
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::WebSockets
 )
 
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)

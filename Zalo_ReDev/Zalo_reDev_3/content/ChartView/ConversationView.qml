@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtQuick.Dialogs
+import QtWebSockets
 
 Item {
     id: mainWindow
@@ -144,6 +146,8 @@ Item {
                 }
                 onAccepted: {
                     listModel.append({send:false,content:text})
+                    conversation_Model.sendMessage(text)
+
                     text = ""
                 }
             }
@@ -155,6 +159,29 @@ Item {
                     source: "../Resource/imageIcon"
                     width: parent.width
                     height: parent.height
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        fileDialog.open()
+                    }
+
+                }
+
+                FileDialog {
+                    id: fileDialog
+                    title: "Select Image"
+
+                    onAccepted: {
+                        // Get the selected file path
+
+                        console.log("You chose: " + fileDialog.currentFile)
+                        var imagePath = fileDialog.currentFile.toString().substring(8); // Removing "file:///" prefix
+
+                        // Call conversation_Model.uploadImage() with the selected image path
+                        conversation_Model.uploadImage(imagePath);
+                    }
                 }
             }
         }
