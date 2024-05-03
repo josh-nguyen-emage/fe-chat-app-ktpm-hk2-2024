@@ -16,7 +16,7 @@ Rectangle{
             Layout.preferredHeight: 200
             color: "transparent"
             Image {
-                source: "./Resource/zalo_logo.png"
+                source: "../Resource/zalo_logo.png"
                 width: parent.width
                 height: parent.height/2
                 fillMode: Image.PreserveAspectFit
@@ -41,19 +41,19 @@ Rectangle{
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
                     Image {
-                        source: "./Resource/phoneIcon.png"
+                        source: "../Resource/phoneIcon.png"
                         width: parent.height
                         height: parent.height
                         fillMode: Image.PreserveAspectFit
                     }
                     TextInput {
-                            id: phoneNumberInput
-                            width: parent.width - parent.height
-                            anchors.right: parent.right
-                            text: "phone number"
-                            font.pixelSize: 25
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                        id: phoneNumberInput
+                        width: parent.width - parent.height
+                        anchors.right: parent.right
+                        text: "0868951004"
+                        font.pixelSize: 25
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                     Rectangle{
                         width: parent.width
                         height: 1
@@ -66,18 +66,22 @@ Rectangle{
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
                     Image {
-                        source: "./Resource/passIcon.png"
+                        source: "../Resource/passIcon.png"
                         width: parent.height
                         height: parent.height
                         fillMode: Image.PreserveAspectFit
                     }
                     TextInput {
-                            width: parent.width - parent.height
-                            anchors.right: parent.right
-                            text: "password"
-                            font.pixelSize: 25
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                        id: passwordInput
+                        width: parent.width - parent.height
+                        anchors.right: parent.right
+                        text: "7c4da56eH--@123456abcDEF-"
+                        echoMode: TextInput.Password
+                        horizontalAlignment: Text.AlignLeft
+                        clip: true
+                        font.pixelSize: 25
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                     Rectangle{
                         width: parent.width
                         height: 1
@@ -106,6 +110,14 @@ Rectangle{
                             anchors.fill: parent
                             onClicked: {
                                 console.log("loggin clicked")
+                                var authentication = logginVM.loginUser(phoneNumberInput.text, passwordInput.text)
+                                if (authentication){
+                                    rootWindow.setChatList()
+                                } else {
+                                    passwordInput.text = ""
+                                }
+
+
                             }
                         }
                     }

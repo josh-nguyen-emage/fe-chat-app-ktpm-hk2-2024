@@ -19,4 +19,6 @@ RESOURCES Resource/birthDate.png Resource/chat_header.png Resource/genderIcon.pn
 RESOURCES Resource/imageIcon.png
 QML_FILES CustomComponent/PersionalInforView.qml
 QML_FILES CustomComponent/CircleImage.qml
+QML_FILES LogginView/LogginView.qml
+RESOURCES Resource/birthDate.png Resource/chat_header.png Resource/genderIcon.png Resource/imageIcon.png Resource/main_header.png Resource/mediaButton.jpg Resource/messageButton.png Resource/mouthan.png Resource/passIcon.png Resource/persionalInfor_header.png Resource/phoneIcon.png Resource/zalo_logo.png Resource/zaloNameIcon.png
 )

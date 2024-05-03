@@ -4,12 +4,15 @@ import QtQuick.Controls 2.15
 import "../CustomComponent"
 
 Rectangle {
+    id: root
     width: 462
     height: 100
+    property var parentDeletageModel
     Rectangle{
         id: userImage
         width: height
         height: parent.height
+
         Rectangle{
             width: parent.width*0.6
             height: parent.height*0.6
@@ -18,7 +21,8 @@ Rectangle {
             CircleImage {
                 id: mouthan
                 anchors.fill: parent
-                source: "../Resource/mouthan.png"
+                // source: "../Resource/mouthan.png"
+                source: parentDeletageModel.imagePath
             }
         }
     }
@@ -36,7 +40,8 @@ Rectangle {
             Text {
                 id: groupName
                 anchors.fill: parent
-                text: qsTr("Group Name")
+                // text: qsTr("Group Name")
+                text: parentDeletageModel.chatName
                 font.pixelSize: 20
             }
 
@@ -51,7 +56,8 @@ Rectangle {
                 id: lastText
                 anchors.fill: parent
                 font.pixelSize: 15
-                text: qsTr("This is the last text recive from backend")
+                // text: qsTr("This is the last text recive from backend")
+                text: parentDeletageModel.lastText
             }
         }
 
@@ -60,6 +66,7 @@ Rectangle {
             width: parent.width - groupNameZone.width
             height: parent.height
             anchors.right: parent.right
+            visible: !(parentDeletageModel.isReaded)
             Rectangle{
                 width: 30
                 height: 20

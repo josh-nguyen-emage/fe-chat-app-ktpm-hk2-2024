@@ -7,6 +7,7 @@ import Zalo_reDev_3
 
 import "ChartView"
 import "PersionalInforView"
+import "LogginView"
 
 Window {
     id: rootWindow
@@ -17,7 +18,7 @@ Window {
 
     StackView {
         id: stack
-        initialItem: chatListView
+        initialItem: logginView
         anchors.fill: parent
     }
 
@@ -39,6 +40,12 @@ Window {
         id: persionalInforView
         PersionalInforView{
             // anchors.fill: parent
+        }
+    }
+
+    Component{
+        id: logginView
+        LogginView{
         }
     }
 

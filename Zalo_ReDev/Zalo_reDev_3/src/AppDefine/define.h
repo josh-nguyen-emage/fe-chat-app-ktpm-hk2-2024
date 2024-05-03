@@ -10,6 +10,7 @@ class Define
 public:
     static Define& getInstance(); // Static method to get the instance
     QString backendPath; // Public member for backend path
+    QString userToken;
 
 private:
     Define(); // Private constructor to prevent instantiation

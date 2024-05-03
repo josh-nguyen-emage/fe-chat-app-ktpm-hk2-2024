@@ -37,23 +37,60 @@ Rectangle {
                 height: parent.height
 
                 model: ListModel {
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
-                    ListElement {}
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Alice";
+                        lastText: "Hey, how's it going?";
+                        isReaded: true
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Bob";
+                        lastText: "Not bad, you?";
+                        isReaded: false
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Charlie";
+                        lastText: "I'm doing well, thanks!";
+                        isReaded: true
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "David";
+                        lastText: "Anyone seen my keys?";
+                        isReaded: false
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Emma";
+                        lastText: "I'll help you look for them.";
+                        isReaded: true
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Frank";
+                        lastText: "Did you hear about the concert next week?";
+                        isReaded: false
+                    }
+
+                    ListElement {
+                        imagePath: "../Resource/mouthan.png";
+                        chatName: "Grace";
+                        lastText: "Yes! I'm so excited!";
+                        isReaded: true
+                    }
                 }
 
-                delegate: ChatComponent {}
+
+                delegate: ChatComponent {
+                    parentDeletageModel: model
+                }
             }
         }
 

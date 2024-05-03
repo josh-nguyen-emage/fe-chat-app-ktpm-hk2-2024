@@ -20,6 +20,10 @@ qt_add_executable(Zalo_reDev_3App src/main.cpp
 
     src/Controller/pythoncontroller.h src/Controller/pythoncontroller.cpp
     src/ViewModel/mainvm.h src/ViewModel/mainvm.cpp
+
+    src/ViewModel/LogginView/logginvm.h src/ViewModel/LogginView/logginvm.cpp
+    src/Model/loggin_model.h src/Model/loggin_model.cpp
+    src/Controller/usercontroller.h src/Controller/usercontroller.cpp
 )
 
 qt_add_resources(Zalo_reDev_3App "configuration"
