@@ -13,7 +13,13 @@ public:
     Q_INVOKABLE void registerUser(const QString &phoneNumber, const QString &username, const QString &password);
     Q_INVOKABLE void loginUser(const QString &phoneNumber, const QString &password);
 
+public slots:
+    void loginSuccess(const QString &accessToken);
+
 signals:
+    void signal_loginSuccess(const QString &accessToken);
+
+
 };
 
 #endif // LOGGINVM_H

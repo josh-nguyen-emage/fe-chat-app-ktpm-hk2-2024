@@ -7,6 +7,10 @@ Item {
     width: 462
     height: 1000
 
+    Component.onCompleted: {
+        persionalInforVM.requestUserData()
+    }
+
     ColumnLayout{
         anchors.fill: parent
         spacing: 0
@@ -71,6 +75,30 @@ Item {
                     iconSource: "../Resource/zaloNameIcon.png"
                     label: "Tên Zalo"
                     value: "Nguyễn Duy Thịnh"
+                }
+
+                InformationComponent{
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 60
+                    iconSource: "../Resource/zaloNameIcon.png"
+                    label: "User Name"
+                    value: "Duy Thịnh"
+                }
+
+                InformationComponent{
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 60
+                    iconSource: "../Resource/zaloNameIcon.png"
+                    label: "Email"
+                    value: "ndthinh.sdh232@hcmut.edu.vn"
+                }
+
+                InformationComponent{
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 60
+                    iconSource: "../Resource/zaloNameIcon.png"
+                    label: "Số Điện Thoại"
+                    value: "0868951004"
                 }
 
                 InformationComponent{

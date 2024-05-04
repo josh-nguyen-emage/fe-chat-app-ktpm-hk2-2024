@@ -13,3 +13,8 @@ void ConversationVM::uploadImage(QString imagePath)
 {
     conversationModel.uploadImage(imagePath);
 }
+
+void ConversationVM::updateReciveTopic(QString newTopic)
+{
+    conversationModel.updateReciverID("/topic/conversations/"+newTopic);
+}

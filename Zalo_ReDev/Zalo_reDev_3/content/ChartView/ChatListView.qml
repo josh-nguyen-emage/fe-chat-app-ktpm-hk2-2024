@@ -6,6 +6,8 @@ Rectangle {
     width: 462
     height: 1000
 
+
+
     ColumnLayout {
         id: mainWindow
         anchors.fill: parent

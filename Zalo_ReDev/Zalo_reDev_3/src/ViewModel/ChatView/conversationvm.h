@@ -15,6 +15,7 @@ public:
 public slots:
     void sendMessage(QString text);
     void uploadImage(QString imagePath);
+    void updateReciveTopic(QString newTopic);
 
 };
 

@@ -8,6 +8,7 @@ Rectangle{
     property string iconSource: "../Resource/zaloNameIcon.png"
     property string label: "Tên Zalo"
     property string value: "Nguyễn Duy Thịnh"
+    property bool isPassword: false
     IconImage{
         height: parent.height * 0.6
         width: height

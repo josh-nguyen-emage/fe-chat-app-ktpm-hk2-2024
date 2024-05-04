@@ -1,6 +1,7 @@
 #ifndef CONVERSATION_MODEL_H
 #define CONVERSATION_MODEL_H
 
+#include "src/Controller/PythonController.h"
 #include <QObject>
 #include <QWebSocket>
 #include <QJsonObject>
@@ -23,6 +24,9 @@ class Conversation_Model : public QObject
     Q_OBJECT
 public:
     explicit Conversation_Model(QObject *parent = nullptr);
+    PythonController* reciverController;
+
+    void updateReciverID(QString newTopic);
 
 public slots:
     void sendMessage(QString text);

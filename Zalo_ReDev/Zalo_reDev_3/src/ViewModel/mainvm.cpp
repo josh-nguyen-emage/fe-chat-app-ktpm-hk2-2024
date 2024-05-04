@@ -8,4 +8,9 @@ MainVM::MainVM(QQmlApplicationEngine *engine)
 
     logginVM = new LogginVM();
     engine->rootContext()->setContextProperty("logginVM", logginVM);
+
+    persionalInforVM = new PersionalInforVM();
+    engine->rootContext()->setContextProperty("persionalInforVM", persionalInforVM);
+
+    MainVM::connect(&logginVM->logging_Model,&Logging_Model::loginSuccess, &persionalInforVM->persionalInfor_Model,&PersionalInfor_Model::reciveUserToken);
 }

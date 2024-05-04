@@ -7,6 +7,15 @@ Rectangle{
     width: 462
     height: 1000
     color: "#aad6ff"
+
+    Connections{
+        target: logginVM
+        function onSignal_loginSuccess(tokenValue){
+            console.log("qml loggin sucess Trigger", tokenValue)
+            rootWindow.setChatList()
+        }
+    }
+
     ColumnLayout{
         anchors.centerIn: parent
         width: parent.width*0.8
@@ -100,6 +109,7 @@ Rectangle{
                         color: "#0190f3"
                         radius: 5
                         Text{
+                            id: logginTextButton
                             text: "Đăng nhập"
                             color: "white"
                             font.pixelSize: 20
@@ -110,14 +120,8 @@ Rectangle{
                             anchors.fill: parent
                             onClicked: {
                                 console.log("loggin clicked")
-                                var authentication = logginVM.loginUser(phoneNumberInput.text, passwordInput.text)
-                                if (authentication){
-                                    rootWindow.setChatList()
-                                } else {
-                                    passwordInput.text = ""
-                                }
-
-
+                                logginVM.loginUser(phoneNumberInput.text, passwordInput.text)
+                                logginTextButton.text = "..."
                             }
                         }
                     }
@@ -127,8 +131,6 @@ Rectangle{
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                 }
-
-
             }
         }
 

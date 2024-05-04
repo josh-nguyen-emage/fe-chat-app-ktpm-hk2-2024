@@ -1,44 +1,45 @@
 #include "conversation_model.h"
 #include "src/AppDefine/define.h"
 
-#include <src/Controller/PythonController.h>
-
-
 Conversation_Model::Conversation_Model(QObject *parent) : QObject(parent)
 {
-    // Connect to WebSocket server
-    m_webSocket.open(QUrl("ws://localhost:8080/conversations"));
+    reciverController = nullptr;
+}
 
-    // Connect signals to slots
-    connect(&m_webSocket, &QWebSocket::textMessageReceived,
-            this, &Conversation_Model::onMessageReceived);
+void Conversation_Model::updateReciverID(QString newTopic)
+{
+    if (reciverController != nullptr){
+        delete reciverController;
+    }
+    reciverController = new PythonController();
+    QStringList inputArgument;
+
+    inputArgument.append(newTopic);
+    reciverController->streamPythonScript(Define::getInstance().backendPath+"\\STOMP\\main_sub.py",inputArgument);
+    Conversation_Model::connect(reciverController,&PythonController::pythonOutput,this,&Conversation_Model::onMessageReceived);
+
 }
 
 void Conversation_Model::sendMessage(QString text)
 {
-    qDebug() << "Send message" << text;
+    PythonController pythonController;
     // Construct JSON message to send
     QJsonObject messageObject;
     messageObject["textBody"] = text;
+    messageObject["senderId"] = "1";
+    messageObject["conversationId"] = "3";
+    messageObject["sendTime"] = "2024-05-01T10:21:45.421953";
     // Add other fields as required by your API
 
     // Convert JSON to string
     QJsonDocument doc(messageObject);
     QString jsonString = doc.toJson(QJsonDocument::Compact);
 
-    // Send message to WebSocket server
-    // m_webSocket.sendTextMessage(jsonString);
+    QStringList inputArgument;
+    inputArgument.append(jsonString);
 
-    //try 1
-    jsonString = "CONNECT\naccept-version:1.0\nheart-beat:10000,10000\n\n\u0000";
-    m_webSocket.sendTextMessage(jsonString);
-    jsonString = "SUBSCRIBE\ndestination:/queue/messages\nid:1\n\n\u0000";
-    m_webSocket.sendTextMessage(jsonString);
-    jsonString = "SEND\ndestination:/app/conversations\n{\"textBody\":\"ssss\"}\n\n\u0000";
-    m_webSocket.sendTextMessage(jsonString);
+    QStringList returnJson = pythonController.runPythonScript(Define::getInstance().backendPath+"\\STOMP\\main_pub.py",inputArgument);
 
-    qDebug() << "Send " << jsonString << " done";
-    qDebug() << "Send " << jsonString[4] << " done";
 }
 
 void Conversation_Model::uploadImage(QString imagePath)
@@ -80,6 +81,7 @@ void Conversation_Model::downloadImage(int imageID)
 void Conversation_Model::onMessageReceived(const QString& message)
 {
     // Parse received JSON message
+    qDebug() << "Message recive, fuck yeah";
     QJsonDocument doc = QJsonDocument::fromJson(message.toUtf8());
     if (!doc.isNull()) {
         QJsonObject object = doc.object();

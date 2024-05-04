@@ -9,6 +9,11 @@ Item {
     width: 462
     height: 1000
 
+    Component.onCompleted: {
+        console.log("create chat list completed")
+        conversationVM.updateReciveTopic(3)
+    }
+
     ColumnLayout{
         anchors.fill: parent
         spacing: 0
@@ -139,11 +144,6 @@ Item {
                 height: parent.height
                 placeholderText: "Enter text here..."
                 anchors.left: parent.left
-
-                // Define behavior when text is entered
-                onTextChanged: {
-                    console.log("Text entered:", textInput.text)
-                }
                 onAccepted: {
                     listModel.append({send:false,content:text})
                     conversationVM.sendMessage(text)

@@ -33,8 +33,10 @@ QStringList PythonController::runPythonScript(const QString& pythonPath, QString
 
 void PythonController::streamPythonScript(const QString& pythonPath, QStringList& arguments) {
     m_pythonProcess = new QProcess();
-    m_pythonProcess->setProgram(pythonPath);
+     arguments.prepend(pythonPath);
+    m_pythonProcess->setProgram("python");
     m_pythonProcess->setArguments(arguments);
+    m_pythonProcess->setProcessChannelMode(QProcess::MergedChannels);
 
     connect(m_pythonProcess, &QProcess::readyReadStandardOutput, this, &PythonController::readOutput);
 

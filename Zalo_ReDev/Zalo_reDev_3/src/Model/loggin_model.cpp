@@ -91,11 +91,31 @@ void Logging_Model::handleNetworkError(QNetworkReply::NetworkError code)
 
 void Logging_Model::handleResponse(QNetworkReply *reply)
 {
+    QByteArray responseData;
     if (reply->error() == QNetworkReply::NoError) {
-        QByteArray responseData = reply->readAll();
+        responseData = reply->readAll();
         qDebug() << "Response:" << responseData;
     } else {
         qDebug() << "Request failed:" << reply->errorString();
     }
+
+    // Parse the JSON data
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
+
+    // Check if the JSON parsing was successful and it is an object
+    if (!jsonResponse.isNull() && jsonResponse.isObject()) {
+        // Extract the JSON object
+        QJsonObject jsonObject = jsonResponse.object();
+
+        // Check if the JSON object contains the "token" field
+        if (jsonObject.contains("token")) {
+            // Get the value of the "token" field
+            QString token = jsonObject.value("token").toString();
+
+            // Emit the signal loginSuccess with the token
+            emit loginSuccess(token);
+        }
+    }
+
     reply->deleteLater();
 }
