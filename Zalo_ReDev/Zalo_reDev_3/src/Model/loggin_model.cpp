@@ -1,4 +1,5 @@
 #include "loggin_model.h"
+#include "src/AppDefine/define.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QDebug>
@@ -24,6 +25,9 @@ void Logging_Model::registerUser(const QString &phoneNumber, const QString &user
 
 void Logging_Model::loginUser(const QString &phoneNumber, const QString &password)
 {
+
+    Define::getInstance().phoneNumber = phoneNumber;
+
     // Construct JSON data for login
     QJsonObject json;
     json["phoneNumber"] = phoneNumber;
@@ -33,6 +37,7 @@ void Logging_Model::loginUser(const QString &phoneNumber, const QString &passwor
     QByteArray requestData = doc.toJson();
 
     sendRequest("/auth/login", requestData);
+
 }
 
 void Logging_Model::logoutUser(const QString &accessToken)
@@ -82,6 +87,8 @@ void Logging_Model::sendRequest(const QString &endpoint, const QByteArray &reque
     } else {
         qDebug() << "Invalid endpoint:" << endpoint;
     }
+
+    qDebug() << "sendRequest done";
 }
 
 void Logging_Model::handleNetworkError(QNetworkReply::NetworkError code)

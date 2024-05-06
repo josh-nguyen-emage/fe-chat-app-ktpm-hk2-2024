@@ -10,7 +10,7 @@ class PersionalInforVM : public QObject
 public:
     explicit PersionalInforVM(QObject *parent = nullptr);
     PersionalInfor_Model persionalInfor_Model;
-    Q_INVOKABLE void requestUserData();
+    Q_INVOKABLE QVariantList requestUserData();
 
 signals:
 };

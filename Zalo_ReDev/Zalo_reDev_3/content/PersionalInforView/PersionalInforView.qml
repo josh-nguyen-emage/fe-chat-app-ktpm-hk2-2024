@@ -8,7 +8,14 @@ Item {
     height: 1000
 
     Component.onCompleted: {
-        persionalInforVM.requestUserData()
+        var dataList = persionalInforVM.requestUserData()
+        viewUserName.value = dataList[0]
+        viewPhoneNumber.value = dataList[1]
+        viewEmail.value = dataList[2]
+        viewName.value = dataList[3] + " " + dataList[4]
+        viewBirthDate.value = dataList[5]
+        console.log(dataList)
+
     }
 
     ColumnLayout{
@@ -70,14 +77,16 @@ Item {
                 }
 
                 InformationComponent{
+                    id: viewName
                     Layout.fillWidth: true
                     Layout.preferredHeight: 60
                     iconSource: "../Resource/zaloNameIcon.png"
-                    label: "Tên Zalo"
+                    label: "Tên"
                     value: "Nguyễn Duy Thịnh"
                 }
 
                 InformationComponent{
+                    id: viewUserName
                     Layout.fillWidth: true
                     Layout.preferredHeight: 60
                     iconSource: "../Resource/zaloNameIcon.png"
@@ -86,6 +95,7 @@ Item {
                 }
 
                 InformationComponent{
+                    id: viewEmail
                     Layout.fillWidth: true
                     Layout.preferredHeight: 60
                     iconSource: "../Resource/zaloNameIcon.png"
@@ -94,6 +104,7 @@ Item {
                 }
 
                 InformationComponent{
+                    id: viewPhoneNumber
                     Layout.fillWidth: true
                     Layout.preferredHeight: 60
                     iconSource: "../Resource/zaloNameIcon.png"
@@ -102,6 +113,7 @@ Item {
                 }
 
                 InformationComponent{
+                    id: viewBirthDate
                     Layout.fillWidth: true
                     Layout.preferredHeight: 60
                     iconSource: "../Resource/birthDate.png"

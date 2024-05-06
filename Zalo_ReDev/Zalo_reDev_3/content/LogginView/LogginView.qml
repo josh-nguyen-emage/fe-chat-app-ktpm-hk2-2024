@@ -59,7 +59,7 @@ Rectangle{
                         id: phoneNumberInput
                         width: parent.width - parent.height
                         anchors.right: parent.right
-                        text: "0868951004"
+                        text: "0868951005"
                         font.pixelSize: 25
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -84,7 +84,7 @@ Rectangle{
                         id: passwordInput
                         width: parent.width - parent.height
                         anchors.right: parent.right
-                        text: "7c4da56eH--@123456abcDEF-"
+                        text: "Test_regist#123"
                         echoMode: TextInput.Password
                         horizontalAlignment: Text.AlignLeft
                         clip: true

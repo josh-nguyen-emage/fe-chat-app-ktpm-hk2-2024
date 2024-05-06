@@ -16,7 +16,8 @@ public:
 
 public slots:
     void reciveUserToken(const QString &accessToken);
-    void requestUserData();
+    QString requestUserData();
+    void setUserInformation();
 
 signals:
 
